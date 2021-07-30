@@ -1,0 +1,36 @@
+version: "1.0"
+
+stages:
+  - setup
+  - test 1
+  - cleanup
+
+steps:
+  clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "lrochette/ptm-tests"
+    revision: "main"
+    stage: setup
+
+
+  create_project:
+    title: creating the test project
+    image: codefresh/cli
+    commands:
+        codefresh create project ptm
+
+  create_pipeline:
+    type: pipeline_trigger_merge
+    title: "ZD-9936"
+    working_directory: ${{clone}}/ZD-9336
+    stage: clone
+    arguments:
+      SPEC: spec.yaml
+      TRIGGERS: trig.yaml
+
+  cleanup:
+    title: creating the test project
+    image: codefresh/cli
+    commands:
+      codefresh delete project ptm

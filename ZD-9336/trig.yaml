@@ -1,0 +1,22 @@
+spec:
+  triggers:
+    - name: trig1
+      type: git
+      repo: ORG/REPO
+      events:
+        - push.heads
+      pullRequestAllowForkEvents: false
+      commentRegex: /.*/gi
+      branchRegex: /codefresh/gi
+      branchRegexInput: regex
+      provider: github
+      disabled: true
+      options:
+        noCache: false
+        noCfCache: false
+        resetVolume: false
+      verified: true
+      context: github
+      contexts: []
+      variables:
+      runtimeEnvironment:
