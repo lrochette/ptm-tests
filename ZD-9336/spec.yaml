@@ -28,6 +28,7 @@ spec:
       working_directory: "${{clone}}"
       tag: "latest"
       dockerfile: "Dockerfile"
+      registry: docker-lr
       stage: "build"
 
     test:

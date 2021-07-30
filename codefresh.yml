@@ -1,8 +1,9 @@
 version: "1.0"
+mode: parallel
 
 stages:
   - setup
-  - test1
+  - ZD-9936
   - cleanup
 
 steps:
@@ -22,16 +23,23 @@ steps:
       - export CF_API_KEY=${{MY_API_KEY}}
       - codefresh create project ptm -t test -t ptm
 
-  create_pipeline:
+  ZD-9936:
     type: pipeline-trigger-merge
     title: "ZD-9936"
     working_directory: ${{clone}}/ZD-9336
-    stage: test1
-    environment:
-      -CF_API_KEY=${{MY_API_KEY}}
+    stage: ZD-9936
     arguments:
       SPEC: spec.yaml
       TRIGGERS: trig.yaml
+      CF_API_KEY: ${{MY_API_KEY}}
+    when:
+      steps:
+        - name: clone
+          on:
+            - success
+        - name: create_project
+          on:
+            - finished
 
   cleanup:
     title: creating the test project
@@ -40,3 +48,8 @@ steps:
     commands:
       - export CF_API_KEY=${{MY_API_KEY}}
       - codefresh delete project ptm
+    when:
+      steps:
+        - name: ZD-9936
+          on:
+            - finished
