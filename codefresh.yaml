@@ -20,7 +20,7 @@ steps:
       - codefresh create project ptm -t test -t ptm
 
   create_pipeline:
-    type: pipeline_trigger_merge
+    type: pipeline-trigger-merge
     title: "ZD-9936"
     working_directory: ${{clone}}/ZD-9336
     stage: test1
