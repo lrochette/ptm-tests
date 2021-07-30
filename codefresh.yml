@@ -52,6 +52,19 @@ steps:
         - name: ZD-9936
           on:
             - finished
+  delete-ZD9936:
+    title: deleting the pipeline created
+    image: codefresh/cli
+    stage: ZD-9936
+    commands:
+      - export CF_API_KEY=${{MY_API_KEY}}
+      - codefresh delete project ptm
+    when:
+      steps:
+        - name: ZD-9936
+          on:
+            - success
+
   cleanup:
     title: creating the test project
     image: codefresh/cli

@@ -27,3 +27,8 @@ spec:
       commands:
         - "ls"
       stage: "test"
+      when:
+        steps:
+        - name: clone
+          on:
+            - success
