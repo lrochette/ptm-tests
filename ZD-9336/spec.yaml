@@ -1,7 +1,7 @@
 version: "1.0"
 kind: pipeline
 metadata:
-  name: ptm/full
+  name: ptm/ZD9336
   project: ptm
 
 
@@ -9,9 +9,7 @@ metadata:
 spec:
   stages:
     - "clone"
-    - "build"
     - "test"
-
 
   steps:
     clone:
@@ -20,16 +18,6 @@ spec:
       repo: "https://github.com/codefresh-io/cli/"
       revision: "master"
       stage: "clone"
-
-    build:
-      title: "Building Docker image"
-      type: "build"
-      image_name: "codefresh-io/cli"
-      working_directory: "${{clone}}"
-      tag: "latest"
-      dockerfile: "Dockerfile"
-      registry: docker-lr
-      stage: "build"
 
     test:
       title: "Running test"

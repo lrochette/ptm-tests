@@ -18,5 +18,3 @@ spec:
       verified: true
       context: github
       contexts: []
-      variables:
-      runtimeEnvironment:

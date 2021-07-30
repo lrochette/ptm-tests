@@ -40,7 +40,18 @@ steps:
         - name: create_project
           on:
             - finished
-
+  cat-ZD9936:
+    title: "Display ZD-9936 pipeline"
+    image: codefresh/cli
+    working_directory: ${{clone}}/ZD-9336
+    stage: ZD-9936
+    commands:
+      - cat spec.yaml
+    when:
+      steps:
+        - name: ZD-9936
+          on:
+            - finished
   cleanup:
     title: creating the test project
     image: codefresh/cli
@@ -52,4 +63,4 @@ steps:
       steps:
         - name: ZD-9936
           on:
-            - finished
+            - success
