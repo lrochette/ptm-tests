@@ -2,7 +2,7 @@ version: "1.0"
 
 stages:
   - setup
-  - test 1
+  - test1
   - cleanup
 
 steps:
@@ -24,7 +24,7 @@ steps:
     type: pipeline_trigger_merge
     title: "ZD-9936"
     working_directory: ${{clone}}/ZD-9336
-    stage: clone
+    stage: test1
     arguments:
       SPEC: spec.yaml
       TRIGGERS: trig.yaml
@@ -32,5 +32,6 @@ steps:
   cleanup:
     title: creating the test project
     image: codefresh/cli
+    stage: cleanup
     commands:
-      codefresh delete project ptm
+      - codefresh delete project ptm
