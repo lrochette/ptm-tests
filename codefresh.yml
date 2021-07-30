@@ -16,6 +16,7 @@ steps:
   create_project:
     title: "creating the test project"
     image: codefresh/cli
+    stage: setup
     commands:
       - codefresh create project ptm -t test -t ptm
 
