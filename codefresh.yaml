@@ -18,7 +18,7 @@ steps:
     title: creating the test project
     image: codefresh/cli
     commands:
-        codefresh create project ptm
+      - codefresh create project ptm -t test -t ptm
 
   create_pipeline:
     type: pipeline_trigger_merge
