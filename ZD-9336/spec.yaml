@@ -1,8 +1,8 @@
 version: "1.0"
 kind: pipeline
 metadata:
-  name: Creator/full
-  project: Creator
+  name: ptm/full
+  project: ptm
 
 
 # Stages can help you organize your steps in stages

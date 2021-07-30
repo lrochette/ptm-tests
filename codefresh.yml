@@ -17,7 +17,9 @@ steps:
     title: "creating the test project"
     image: codefresh/cli
     stage: setup
+    fail_fast: false
     commands:
+      - export CF_API_KEY=${{MY_API_KEY}}
       - codefresh create project ptm -t test -t ptm
 
   create_pipeline:
@@ -25,6 +27,8 @@ steps:
     title: "ZD-9936"
     working_directory: ${{clone}}/ZD-9336
     stage: test1
+    environment:
+      -CF_API_KEY=${{MY_API_KEY}}
     arguments:
       SPEC: spec.yaml
       TRIGGERS: trig.yaml
@@ -34,4 +38,5 @@ steps:
     image: codefresh/cli
     stage: cleanup
     commands:
+      - export CF_API_KEY=${{MY_API_KEY}}
       - codefresh delete project ptm
