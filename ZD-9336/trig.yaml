@@ -2,12 +2,12 @@ spec:
   triggers:
     - name: trig1
       type: git
-      repo: ORG/REPO
+      repo: lrochette/ptm-tests
       events:
         - push.heads
       pullRequestAllowForkEvents: false
       commentRegex: /.*/gi
-      branchRegex: /codefresh/gi
+      branchRegex: /main/gi
       branchRegexInput: regex
       provider: github
       disabled: true
