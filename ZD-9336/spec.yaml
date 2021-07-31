@@ -15,14 +15,14 @@ spec:
     clone:
       title: "Cloning repository"
       type: "git-clone"
-      repo: "https://github.com/codefresh-io/cli/"
-      revision: "master"
+      repo: "lrochette/ptm-tests"
+      revision: "main"
       stage: "clone"
 
     test:
       title: "Running test"
       type: "freestyle" # Run any command
-      image: "codefresh-io/cli" # The image in which command will be executed
+      image: "codefresh/cli" # The image in which command will be executed
       working_directory: "${{clone}}" # Running command where code cloned
       commands:
         - "ls"
