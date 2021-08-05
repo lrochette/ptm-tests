@@ -31,7 +31,10 @@ steps:
     dockerfile: "Dockerfile"
     registry: docker-lr
     image_name: lrochette/pipeline-trigger-merge
-    tags: [ "${{PLUGIN_VERSION}}" ]
+    tags:
+      - "${{PLUGIN_VERSION}}"
+      - ${{CF_BRANCH_TAG_NORMALIZED}}
+      - latest
     disable_push: false
 
   # PushingToRegistry:
