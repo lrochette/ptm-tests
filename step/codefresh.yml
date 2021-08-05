@@ -25,7 +25,7 @@ steps:
   BuildImage:
     title: Building Docker Image
     type: build
-    working_directory: "./step"
+    working_directory: "${{clone}}/step"
     dockerfile: "Dockerfile"
     registry: docker-lr
     image_name: lrochette/pipeline-trigger-merge
