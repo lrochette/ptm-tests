@@ -12,9 +12,9 @@ steps:
     title: "Cloning steps repository for ptm"
     type: "git-clone"
     arguments:
-      repo: 'lrochette/ptm-tests'
+      repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
       git: "github"
-      revision: 'main'
+      revision: '${{CF_REVISION}}'
 
   GettingPluginVersion:
     title: Getting Plugin Version
