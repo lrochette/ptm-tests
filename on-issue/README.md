@@ -6,12 +6,6 @@
 165  error     "steps" must be an object
 165  error     "true" is not allowed
 
-## test1
-on is betwee quote to prevent conversion into a boolean
-
-## test2
-on is as-is to see if awk usage to put it between quote works
-
 # debuggging
 
 looks like `yq` interpreted on: as true
