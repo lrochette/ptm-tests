@@ -27,6 +27,7 @@ steps:
     type: build
     working_directory: "./step"
     dockerfile: "Dockerfile"
+    registry: docker-lr
     image_name: lrochette/pipeline-trigger-merge
     tags: [ "${{PLUGIN_VERSION}}" ]
     disable_push: false
