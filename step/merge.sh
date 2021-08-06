@@ -27,9 +27,10 @@ process_file() {
 }
 export curdir=`pwd`
 export count=1
+
 echo "Removing YAML confusing 'on:' statements"
 sed -E "s/([[:blank:]])on:/$1'on':/" $curdir/$SPEC > $CF_BUILD_ID.yml
-diff $curdir/$SPEC > $CF_BUILD_ID.yml
+diff $curdir/$SPEC  $CF_BUILD_ID.yml
 mv $CF_BUILD_ID.yml $curdir/$SPEC
 
 echo "Merging pipeline spec $SPEC with triggers $TRIGGERS"
