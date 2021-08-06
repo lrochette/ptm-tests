@@ -20,6 +20,7 @@ steps:
     title: Getting Plugin Version
     image: codefresh/cli
     stage: build
+    working_directory: "${{clone}}/step"
     commands:
       - cf_export PLUGIN_VERSION=$(yq -r .metadata.version ./step.yaml)
 
@@ -31,15 +32,13 @@ steps:
     dockerfile: "Dockerfile"
     registry: docker-lr
     image_name: lrochette/pipeline-trigger-merge
-    tags:
-      - "${{PLUGIN_VERSION}}"
-      - ${{CF_BRANCH_TAG_NORMALIZED}}
-      - latest
-    disable_push: false
+    tag: latest
+    disable_push: true
 
-  # PushingToRegistry:
-  #   type: push
-  #   title: Pushing To Dockerhub Registry
-  #   registry: docker-lr
-  #   candidate: ${{BuildImage}}
-  #   tags: [ "${{PLUGIN_VERSION}}" ]
+  PushingToRegistry:
+    type: push
+    stage: push
+    title: Pushing To Dockerhub Registry
+    registry: docker-lr
+    candidate: ${{BuildImage}}
+    tags: ["${{PLUGIN_VERSION}}","${{CF_BRANCH_TAG_NORMALIZED}}"]
