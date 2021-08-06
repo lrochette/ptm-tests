@@ -53,7 +53,7 @@ spec:
   stepsTemplate: |-
     pipeline-trigger-merge:
       name: pipeline-trigger-merge
-      image: lrochette/pipeline-trigger-merge:1.0.0
+      image: lrochette/pipeline-trigger-merge:1.1.1
       environment:
       [[ range $key, $val := .Arguments ]]
         - '[[ $key ]]=[[ $val ]]'

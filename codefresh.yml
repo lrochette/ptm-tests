@@ -3,8 +3,8 @@ mode: parallel
 
 stages:
   - setup
-  - ZD-9336-test1
-  - ZD-9336-test2
+  - ZD_9336_test1
+  - ZD_9336_test2
   - cleanup
 
 steps:
@@ -31,12 +31,17 @@ steps:
     working_directory: "${{clone}}/step"
     commands:
       - cf_export PLUGIN_VERSION=$(yq -r .metadata.version ./step.yaml)
-
-  ZD-9336-test1:
-    type: laurent-cf/pipeline-trigger-merge
-    title: "ZD-9336-test1 - on is quoted"
+    when:
+      steps:
+        all:
+          - name: clone
+            'on':
+              - success
+  ZD_9336_test1:
+    type: laurent-cf/pipeline-trigger-merge:1.1.1
+    title: "ZD_9336_test1 - on is quoted"
     working_directory: ${{clone}}/ZD-9336/test1
-    stage: ZD-9336-test1
+    stage: ZD_9336_test1
     arguments:
       SPEC: spec.yaml
       TRIGGERS: trig.yaml
@@ -50,11 +55,11 @@ steps:
           - name: create_project
             on:
               - finished
-  ZD-9336-test2:
-    type: laurent-cf/pipeline-trigger-merge
-    title: "ZD-9336-test2 - on is unquoted"
+  ZD_9336_test2:
+    type: laurent-cf/pipeline-trigger-merge:1.1.1
+    title: "ZD_9336_test2 - on is unquoted"
     working_directory: ${{clone}}/ZD-9336/test2
-    stage: ZD-9336-test2
+    stage: ZD_9336_test2
     arguments:
       SPEC: spec.yaml
       TRIGGERS: trig.yaml
@@ -71,27 +76,27 @@ steps:
   run-ZD9336-test1:
     title: Running the pipeline created
     type: codefresh-run
-    stage: ZD-9336-test1
+    stage: ZD_9336_test1
     arguments:
       PIPELINE_ID: ptm/ZD9336-test1
       TRIGGER_ID: trig1
       BRANCH: main
     when:
       steps:
-        - name: ZD-9336-test1
+        - name: ZD_9336_test1
           on:
             - success
   run-ZD9336-test2:
     title: Running the pipeline created
     type: codefresh-run
-    stage: ZD-9336-test2
+    stage: ZD_9336_test2
     arguments:
       PIPELINE_ID: ptm/ZD9336-test2
       TRIGGER_ID: trig1
       BRANCH: main
     when:
       steps:
-        - name: ZD-9336-test2
+        - name: ZD_9336_test2
           on:
             - success
 
