@@ -20,7 +20,7 @@ spec:
 ```
 create_pipeline:
   title: "Creating pipeline"
-  image: lrochette/ptm:pipeline_trigger_merge
+  image: lrochette/ptm:pipeline-trigger-merge
   working_directory: ${{clone}}
   stage: clone
   commands:

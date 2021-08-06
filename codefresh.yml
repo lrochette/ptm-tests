@@ -33,7 +33,7 @@ steps:
       - cf_export PLUGIN_VERSION=$(yq -r .metadata.version ./step.yaml)
 
   ZD-9336-test1:
-    type: laurent-cf/pipeline_trigger_merge
+    type: laurent-cf/pipeline-trigger-merge
     title: "ZD-9336-test1 - on is quoted"
     working_directory: ${{clone}}/ZD-9336/test1
     stage: ZD-9336-test1
@@ -51,7 +51,7 @@ steps:
             on:
               - finished
   ZD-9336-test2:
-    type: laurent-cf/pipeline_trigger_merge
+    type: laurent-cf/pipeline-trigger-merge
     title: "ZD-9336-test2 - on is unquoted"
     working_directory: ${{clone}}/ZD-9336/test2
     stage: ZD-9336-test2
