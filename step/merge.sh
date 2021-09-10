@@ -32,6 +32,8 @@ echo "Removing YAML confusing 'on:' statements"
 sed -E "s/([[:blank:]])on:/$1'on':/" $curdir/$SPEC > $CF_BUILD_ID.yml
 diff $curdir/$SPEC  $CF_BUILD_ID.yml
 mv $CF_BUILD_ID.yml $curdir/$SPEC
+echo "Modified SPEC file"
+cat $curdir/$SPEC
 
 echo "Merging pipeline spec $SPEC with triggers $TRIGGERS"
 for f in `echo $TRIGGERS` ; do
